@@ -1,20 +1,16 @@
 # UniversalWindowsStart
 Este é um projeto de uma biblioteca muito simples, sem dependências, que facilita o início de um aplicativo Universal Windows.
-
-
-
+   
+  
 ## Controles para navegação:
 São 2 controles que trabalham juntos e que permite a navegação entre views.
-
-
-
+  
 SideMenu | SideMenuItem
 --- | ---
 Herda de ListBox | Herda de ListBoxItem
-Use a propriedade **Pages** para registrar as instâncias das views disponíveis para navigação. | Use a propriedade **PageTypeName** para indicar qual o tipo de view a ser exibida.
-
-
-
+Use a propriedade `Pages` para registrar as instâncias das views disponíveis para navigação. | Use a propriedade `PageTypeName` para indicar qual o tipo de view a ser exibida.
+  
+  
 ### SideMenu e SideMenuItem exemplos de uso:
 
 ```C#

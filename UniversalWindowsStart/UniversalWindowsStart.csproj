@@ -124,6 +124,7 @@
     <Compile Include="Controls\SideMenuItem.cs" />
     <Compile Include="Controls\TemplatePartNotFounded.cs" />
     <Compile Include="MVVM\NotifyPropertyChangedBase.cs" />
+    <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\UniversalWindowsStart.rd.xml" />
   </ItemGroup>

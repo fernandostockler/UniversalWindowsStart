@@ -24,9 +24,23 @@ namespace UniversalWindowsStart.Controls
             Loaded += SideMenu_Loaded;
         }
 
+        public Dictionary<string, Page> Pages
+        {
+            get => (Dictionary<string, Page>)GetValue(PagesProperty);
+            set => SetValue(PagesProperty, value);
+        }
+
+        public static readonly DependencyProperty PagesProperty =
+            DependencyProperty.Register(
+                name: nameof(Pages),
+                propertyType: typeof(Dictionary<string, Page>),
+                ownerType: typeof(SideMenu),
+                typeMetadata: new PropertyMetadata(
+                defaultValue: new Dictionary<string, Page>()));
+
         private void SideMenu_Loaded(object sender, RoutedEventArgs e)
         {
-            SelectPage("HomePage");
+            SelectPage(pageName: "HomePage");
         }
 
         private void SideMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -36,6 +50,11 @@ namespace UniversalWindowsStart.Controls
                 SideMenuItem item = (SideMenuItem)e.AddedItems[0];
                 SelectPage(item.PageTypeName);
             }
+        }
+
+        private void HamburgerMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            SplitView1.IsPaneOpen = !SplitView1.IsPaneOpen;
         }
 
         private void SelectPage(string pageName)
@@ -50,37 +69,16 @@ namespace UniversalWindowsStart.Controls
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-
             HamburgerMenuButton = GetTemplateChild<Button>(PART_HamburgerMenuButton);
             HamburgerMenuButton.Click += HamburgerMenuButton_Click;
-
             SplitView1 = GetTemplateChild<SplitView>(PART_SplitView);
-
             Frame1 = GetTemplateChild<Frame>(PART_Frame);
         }
-
-        private void HamburgerMenuButton_Click(object sender, RoutedEventArgs e)
-        {
-            SplitView1.IsPaneOpen = !SplitView1.IsPaneOpen;
-        }
-
-        public Dictionary<string, Page> Pages
-        {
-            get => (Dictionary<string, Page>)GetValue(PagesProperty);
-            set => SetValue(PagesProperty, value);
-        }
-        public static readonly DependencyProperty PagesProperty =
-            DependencyProperty.Register(
-                name: nameof(Pages),
-                propertyType: typeof(Dictionary<string, Page>),
-                ownerType: typeof(SideMenu),
-                typeMetadata: new PropertyMetadata(new Dictionary<string, Page>()));
 
         protected T GetTemplateChild<T>(string childName) where T : DependencyObject
         {
             return GetTemplateChild(childName) is T child ? child : throw new TemplatePartNotFounded(childName, typeof(T));
         }
-
 
         protected override DependencyObject GetContainerForItemOverride()
         {

@@ -68,5 +68,5 @@ Use a propriedade **Pages** para registrar as instâncias das views disponíveis
   ```
 
 ### 3. Resultado:
-![Code sample](/Images/Captura de tela 2021-07-25 173547_MyProject_SideMenu.png)
+![Code sample](/Captura de tela 2021-07-25 173547_MyProject_SideMenu.png)
     

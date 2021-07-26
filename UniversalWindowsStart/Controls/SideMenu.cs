@@ -22,13 +22,38 @@ namespace UniversalWindowsStart.Controls
         public SideMenu()
         {
             DefaultStyleKey = typeof(SideMenu);
-            SelectionChanged += SideMenu_SelectionChanged;
             Loaded += SideMenu_Loaded;
+            SelectionChanged += SideMenu_SelectionChanged;
         }
 
         private void SideMenu_Loaded(object sender, RoutedEventArgs e)
         {
-            SelectPage("HomePage");
+            DisplayFirstOrSelected();
+        }
+
+        private void DisplayFirstOrSelected()
+        {
+            SelectPage(PageWithIsSelectedOrFirstPage());
+
+            string PageWithIsSelectedOrFirstPage()
+            {
+                SideMenuItem firstItem = null;
+                foreach (object item in Items)
+                {
+                    if (item is SideMenuItem sideMenuItem)
+                    {
+                        if (firstItem == null)
+                        {
+                            firstItem = sideMenuItem;
+                        }
+                        if (sideMenuItem.IsSelected)
+                        {
+                            return sideMenuItem.PageTypeName;
+                        }
+                    }
+                }
+                return firstItem is null ? string.Empty : firstItem.PageTypeName;
+            }
         }
 
         private void SideMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)

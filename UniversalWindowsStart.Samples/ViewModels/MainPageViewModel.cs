@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UniversalWindowsStart.MVVM;
 using UniversalWindowsStart.Samples.Views;
 using Windows.UI.Xaml.Controls;
@@ -22,7 +18,7 @@ namespace UniversalWindowsStart.Samples.ViewModels
             Pages = new Dictionary<string, Page>()
             {
                 { nameof(HomePage), new HomePage() },
-                { nameof(SettingsPage), new SettingsPage() }
+                { nameof(AboutPage), new AboutPage() }
             };
         }
     }

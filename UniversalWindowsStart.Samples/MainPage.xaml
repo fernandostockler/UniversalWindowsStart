@@ -1,22 +1,26 @@
 ﻿<Page
+    x:Class="UniversalWindowsStart.Samples.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:UniversalWindowsStart.Samples"
+    xmlns:Custom="using:UniversalWindowsStart.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Custom="using:UniversalWindowsStart.Controls"
     xmlns:vm="using:UniversalWindowsStart.Samples.ViewModels"
-    x:Class="UniversalWindowsStart.Samples.MainPage"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
     <Page.DataContext>
-        <vm:MainPageViewModel/>
+        <vm:MainPageViewModel />
     </Page.DataContext>
-    <Grid>
-        <Custom:SideMenu x:Name="sideMenu" Pages="{Binding Pages, Mode=TwoWay}">
-            <Custom:SideMenuItem Content="Home" Symbol="Home" PageTypeName="HomePage" IsSelected="True"/>
-            <Custom:SideMenuItem Content="Settings" Symbol="Setting" PageTypeName="SettingsPage"/>
-            <Custom:SideMenuItem Content="Test" Symbol="DisableUpdates" />
-        </Custom:SideMenu>
-    </Grid>
+    <Custom:SideMenu x:Name="sideMenu" Pages="{Binding Pages}">
+        <Custom:SideMenuItem
+            Content="Home"
+            IsSelected="True"
+            PageTypeName="HomePage"
+            Symbol="Home" />
+        <Custom:SideMenuItem
+            Content="Settings"
+            PageTypeName="SettingsPage"
+            Symbol="Setting" />
+        <Custom:SideMenuItem Content="Test" Symbol="DisableUpdates" />
+    </Custom:SideMenu>
 </Page>

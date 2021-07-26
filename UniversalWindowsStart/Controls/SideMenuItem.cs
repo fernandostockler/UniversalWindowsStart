@@ -6,13 +6,11 @@ namespace UniversalWindowsStart.Controls
 {
     public class SideMenuItem : ListBoxItem
     {
-        private const string Comum = "Comum";
         public SideMenuItem()
         {
             DefaultStyleKey = typeof(SideMenuItem);
         }
 
-        [Category(Comum)]
         public double IconWidth
         {
             get => (double)GetValue(IconWidthProperty);
@@ -25,7 +23,6 @@ namespace UniversalWindowsStart.Controls
                 ownerType: typeof(SideMenuItem),
                 typeMetadata: new PropertyMetadata(48.0));
 
-        [Category(Comum)]
         public Symbol Symbol
         {
             get => (Symbol)GetValue(SymbolProperty);
@@ -38,7 +35,6 @@ namespace UniversalWindowsStart.Controls
                 ownerType: typeof(SideMenuItem),
                 typeMetadata: new PropertyMetadata(Symbol.Home));
 
-        [Category(Comum)]
         public string PageTypeName
         {
             get => (string)GetValue(PageTypeNameProperty);

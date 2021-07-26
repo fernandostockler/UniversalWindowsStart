@@ -14,7 +14,7 @@
     </Page.DataContext>
     <Grid>
         <Custom:SideMenu x:Name="sideMenu" Pages="{Binding Pages, Mode=TwoWay}">
-            <Custom:SideMenuItem Content="Home" Symbol="Home" PageTypeName="HomePage"/>
+            <Custom:SideMenuItem Content="Home" Symbol="Home" PageTypeName="HomePage" IsSelected="True"/>
             <Custom:SideMenuItem Content="Settings" Symbol="Setting" PageTypeName="SettingsPage"/>
             <Custom:SideMenuItem Content="Test" Symbol="DisableUpdates" />
         </Custom:SideMenu>

@@ -11,6 +11,7 @@ namespace UniversalWindowsStart.Controls
     [TemplatePart(Name = PART_Frame, Type = typeof(Frame))]
     public class SideMenu : ListBox
     {
+        private TextBlock PageNotFounded = new TextBlock() { Text = "Page not founded!", HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontSize = 42.0 };
         private const string PART_HamburgerMenuButton = "PART_HamburgerMenuButton";
         private const string PART_SplitView = "PART_SplitView";
         private const string PART_Frame = "PART_Frame";
@@ -38,11 +39,12 @@ namespace UniversalWindowsStart.Controls
 
         private void SelectPage(string pageName)
         {
-            if (string.IsNullOrEmpty(pageName) || Pages.Count == 0)
+            if (IsLoaded)
             {
-                return;
+                Frame1.Content = string.IsNullOrEmpty(pageName) || Pages.Count == 0
+                    ? PageNotFounded
+                    : (object)Pages[pageName];
             }
-            Frame1.Content = Pages.ContainsKey(pageName) ? Pages[pageName] : (object)"Page not founded.";
         }
 
         protected override void OnApplyTemplate()

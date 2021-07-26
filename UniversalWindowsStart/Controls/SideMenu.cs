@@ -9,10 +9,10 @@ namespace UniversalWindowsStart.Controls
     [TemplatePart(Name = PART_HamburgerMenuButton, Type = typeof(ButtonBase))]
     [TemplatePart(Name = PART_SplitView, Type = typeof(SplitView))]
     [TemplatePart(Name = PART_Frame, Type = typeof(Frame))]
-    [TemplatePart(Name = PART_FooterArea, Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = PART_FooterArea, Type = typeof(ContentControl))]
     public class SideMenu : ListBox
     {
-        private TextBlock PageNotFounded = new TextBlock() { Text = "Page not founded!", HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontSize = 42.0 };
+        private readonly TextBlock PageNotFounded = new TextBlock() { Text = "Page not founded!", HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontSize = 42.0 };
         private const string PART_HamburgerMenuButton = "PART_HamburgerMenuButton";
         private const string PART_SplitView = "PART_SplitView";
         private const string PART_Frame = "PART_Frame";
@@ -20,7 +20,7 @@ namespace UniversalWindowsStart.Controls
         private Button HamburgerMenuButton;
         private SplitView SplitView1;
         private Frame Frame1;
-        private FrameworkElement _footerArea;
+        private ContentControl _footerArea;
 
         public SideMenu()
         {
@@ -52,7 +52,7 @@ namespace UniversalWindowsStart.Controls
                 name: nameof(FooterArea),
                 propertyType: typeof(FrameworkElement),
                 ownerType: typeof(SideMenu),
-                typeMetadata: new PropertyMetadata(null));
+                typeMetadata: new PropertyMetadata(new Grid()));
 
 
         private void SideMenu_Loaded(object sender, RoutedEventArgs e)
@@ -112,7 +112,7 @@ namespace UniversalWindowsStart.Controls
             HamburgerMenuButton.Click += HamburgerMenuButton_Click;
             SplitView1 = GetTemplateChild<SplitView>(PART_SplitView, true);
             Frame1 = GetTemplateChild<Frame>(PART_Frame, true);
-            _footerArea = GetTemplateChild<FrameworkElement>(PART_FooterArea, true);
+            _footerArea = GetTemplateChild<ContentControl>(PART_FooterArea, true);
         }
 
         /// <summary>

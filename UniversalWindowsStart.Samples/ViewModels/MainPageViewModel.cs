@@ -18,7 +18,8 @@ namespace UniversalWindowsStart.Samples.ViewModels
             Pages = new Dictionary<string, Page>()
             {
                 { nameof(HomePage), new HomePage() },
-                { nameof(AboutPage), new AboutPage() }
+                { nameof(AboutPage), new AboutPage() },
+                { nameof(SettingsPage), new SettingsPage() }
             };
         }
     }

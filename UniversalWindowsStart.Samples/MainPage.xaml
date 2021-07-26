@@ -18,9 +18,12 @@
             PageTypeName="HomePage"
             Symbol="Home" />
         <Custom:SideMenuItem
-            Content="Settings"
-            PageTypeName="SettingsPage"
-            Symbol="Setting" />
+            Content="About"
+            PageTypeName="AboutPage"
+            Symbol="People" />
         <Custom:SideMenuItem Content="Test" Symbol="DisableUpdates" />
+        <Custom:SideMenu.FooterArea>
+            <Custom:SideMenuItem x:Name="SettingsSideMenuItem" Content="Settings" Symbol="Setting" PageTypeName="SettingsPage" Width="48" Height="48" Tapped="SettingsSideMenuItem_Tapped"/>
+        </Custom:SideMenu.FooterArea>
     </Custom:SideMenu>
 </Page>

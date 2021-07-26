@@ -8,5 +8,10 @@ namespace UniversalWindowsStart.Samples
         {
             InitializeComponent();
         }
+
+        private void SettingsSideMenuItem_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            sideMenu.SelectPage(SettingsSideMenuItem.PageTypeName);
+        }
     }
 }

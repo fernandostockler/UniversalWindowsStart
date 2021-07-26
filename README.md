@@ -54,7 +54,7 @@ Exemplo MVVM:
           <vm:MainPageViewModel />
       </Page.DataContext>
       <Grid>
-          <controls:SideMenu x:Name="sidemenu" Pages="{Binding Pages, Mode=TwoWay}">
+          <controls:SideMenu x:Name="sidemenu" Pages="{Binding Pages}">
               <controls:SideMenuItem
                   Content="Home"
                   PageTypeName="HomePage"
@@ -77,11 +77,6 @@ public sealed partial class MainPage : Page
   public MainPage()
   {
       InitializeComponent();
-      Loaded += MainPage_Loaded;
-  }
-
-  private void MainPage_Loaded(object sender, RoutedEventArgs e)
-  {
       sideMenu.Pages.Clear();
       sideMenu.Pages.Add(nameof(HomePage), new HomePage());
       sideMenu.Pages.Add(nameof(SettingsPage), new SettingsPage());
@@ -99,12 +94,10 @@ public sealed partial class MainPage : Page
     x:Class="UniversalWindowsStart.Samples.MainPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Grid>
-        <Custom:SideMenu x:Name="sideMenu">
-            <Custom:SideMenuItem Content="Home" Symbol="Home" PageTypeName="HomePage" IsSelected="True"/>
-            <Custom:SideMenuItem Content="Settings" Symbol="Setting" PageTypeName="SettingsPage"/>
-        </Custom:SideMenu>
-    </Grid>
+    <Custom:SideMenu x:Name="sideMenu">
+       <Custom:SideMenuItem Content="Home" Symbol="Home" PageTypeName="HomePage" IsSelected="True"/>
+       <Custom:SideMenuItem Content="Settings" Symbol="Setting" PageTypeName="SettingsPage"/>
+    </Custom:SideMenu>
 </Page>
 
 ```

@@ -103,7 +103,6 @@ public sealed partial class MainPage : Page
         <Custom:SideMenu x:Name="sideMenu">
             <Custom:SideMenuItem Content="Home" Symbol="Home" PageTypeName="HomePage" IsSelected="True"/>
             <Custom:SideMenuItem Content="Settings" Symbol="Setting" PageTypeName="SettingsPage"/>
-            <Custom:SideMenuItem Content="Test" Symbol="DisableUpdates" />
         </Custom:SideMenu>
     </Grid>
 </Page>

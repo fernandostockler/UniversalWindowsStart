@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
-
+using UniversalWindowsStart.Samples.Views;
 
 namespace UniversalWindowsStart.Samples
 {
@@ -12,7 +12,7 @@ namespace UniversalWindowsStart.Samples
 
         private void SettingsButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            sideMenu.SelectPage("SettingsPage");
+            sideMenu.SelectPage(nameof(SettingsPage));
             sideMenu.SelectedIndex = -1;
         }
     }

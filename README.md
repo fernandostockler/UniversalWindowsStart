@@ -12,6 +12,8 @@ Use a propriedade `Pages` para registrar as instâncias das views disponíveis p
   
   
 ### SideMenu e SideMenuItem exemplos de uso:
+Exemplo MVVM:
+</br>
 
 ```C#
 1. Na ViewModel:
@@ -65,8 +67,50 @@ Use a propriedade `Pages` para registrar as instâncias das views disponíveis p
       </Grid>
   </Page>
   ```
+Exemplo Code-Behinde:
 
-### 3. Resultado:
+```C#
+1. Code behinde:
+
+public sealed partial class MainPage : Page
+{
+  public MainPage()
+  {
+      InitializeComponent();
+      Loaded += MainPage_Loaded;
+  }
+
+  private void MainPage_Loaded(object sender, RoutedEventArgs e)
+  {
+      sideMenu.Pages.Clear();
+      sideMenu.Pages.Add(nameof(HomePage), new HomePage());
+      sideMenu.Pages.Add(nameof(SettingsPage), new SettingsPage());
+  }
+}
+
+2. Em MainPage.xaml
+
+<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Custom="using:UniversalWindowsStart.Controls"
+    x:Class="UniversalWindowsStart.Samples.MainPage"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <Custom:SideMenu x:Name="sideMenu">
+            <Custom:SideMenuItem Content="Home" Symbol="Home" PageTypeName="HomePage" IsSelected="True"/>
+            <Custom:SideMenuItem Content="Settings" Symbol="Setting" PageTypeName="SettingsPage"/>
+            <Custom:SideMenuItem Content="Test" Symbol="DisableUpdates" />
+        </Custom:SideMenu>
+    </Grid>
+</Page>
+
+```
+
+### Resultado:
 
 ![Code sample](https://github.com/fernandostockler/UniversalWindowsStart/blob/development/Captura%20de%20tela%202021-07-25%20173547_MyProject_SideMenu.png)
     

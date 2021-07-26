@@ -66,8 +66,11 @@ namespace UniversalWindowsStart.Controls
 
         private void SideMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SideMenuItem item = (SideMenuItem)e.AddedItems[0];
-            SelectPage(item.PageTypeName);
+            if (e.AddedItems.Count > 0)
+            {
+                SideMenuItem item = (SideMenuItem)e.AddedItems[0];
+                SelectPage(item.PageTypeName);
+            }
         }
 
         public void SelectPage(string pageName)

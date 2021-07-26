@@ -23,7 +23,9 @@
             Symbol="People" />
         <Custom:SideMenuItem Content="Test" Symbol="DisableUpdates" />
         <Custom:SideMenu.FooterArea>
-            <Custom:SideMenuItem x:Name="SettingsSideMenuItem" Content="Settings" Symbol="Setting" PageTypeName="SettingsPage" Width="48" Height="48" Tapped="SettingsSideMenuItem_Tapped"/>
+            <Button x:Name="SettingsButton" Padding="11.5" Click="SettingsButton_Click">
+                <SymbolIcon Symbol="Setting"/>
+            </Button>
         </Custom:SideMenu.FooterArea>
     </Custom:SideMenu>
 </Page>

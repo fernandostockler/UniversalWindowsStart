@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using UniversalWindowsStart.Controls;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 
 
 namespace UniversalWindowsStart.Samples
@@ -15,18 +13,7 @@ namespace UniversalWindowsStart.Samples
         private void SettingsButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             sideMenu.SelectPage("SettingsPage");
-            DesselectAllSideMenuItems();
-
-            void DesselectAllSideMenuItems()
-            {
-                foreach (object item in sideMenu.Items)
-                {
-                    if (item is SideMenuItem sideMenuItem)
-                    {
-                        sideMenuItem.IsSelected = false;
-                    }
-                }
-            }
+            sideMenu.SelectedIndex = -1;
         }
     }
 }

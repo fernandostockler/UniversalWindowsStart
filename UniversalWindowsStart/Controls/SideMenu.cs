@@ -9,15 +9,18 @@ namespace UniversalWindowsStart.Controls
     [TemplatePart(Name = PART_HamburgerMenuButton, Type = typeof(ButtonBase))]
     [TemplatePart(Name = PART_SplitView, Type = typeof(SplitView))]
     [TemplatePart(Name = PART_Frame, Type = typeof(Frame))]
+    [TemplatePart(Name = PART_FooterArea, Type = typeof(FrameworkElement))]
     public class SideMenu : ListBox
     {
         private TextBlock PageNotFounded = new TextBlock() { Text = "Page not founded!", HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontSize = 42.0 };
         private const string PART_HamburgerMenuButton = "PART_HamburgerMenuButton";
         private const string PART_SplitView = "PART_SplitView";
         private const string PART_Frame = "PART_Frame";
+        private const string PART_FooterArea = "PART_FooterArea";
         private Button HamburgerMenuButton;
         private SplitView SplitView1;
         private Frame Frame1;
+        private FrameworkElement FooterArea;
 
         public SideMenu()
         {
@@ -26,9 +29,42 @@ namespace UniversalWindowsStart.Controls
             SelectionChanged += SideMenu_SelectionChanged;
         }
 
+        public Dictionary<string, Page> Pages
+        {
+            get => (Dictionary<string, Page>)GetValue(PagesProperty);
+            set => SetValue(PagesProperty, value);
+        }
+        public static readonly DependencyProperty PagesProperty =
+            DependencyProperty.Register(
+                name: nameof(Pages),
+                propertyType: typeof(Dictionary<string, Page>),
+                ownerType: typeof(SideMenu),
+                typeMetadata: new PropertyMetadata(new Dictionary<string, Page>()));
+
+
         private void SideMenu_Loaded(object sender, RoutedEventArgs e)
         {
             DisplayFirstOrSelected();
+        }
+        private void HamburgerMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            SplitView1.IsPaneOpen = !SplitView1.IsPaneOpen;
+        }
+
+        private void SideMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SideMenuItem item = (SideMenuItem)e.AddedItems[0];
+            SelectPage(item.PageTypeName);
+        }
+
+        public void SelectPage(string pageName)
+        {
+            if (IsLoaded)
+            {
+                Frame1.Content = string.IsNullOrEmpty(pageName) || Pages.Count == 0
+                    ? PageNotFounded
+                    : (object)Pages[pageName];
+            }
         }
 
         private void DisplayFirstOrSelected()
@@ -56,22 +92,6 @@ namespace UniversalWindowsStart.Controls
             }
         }
 
-        private void SideMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SideMenuItem item = (SideMenuItem)e.AddedItems[0];
-            SelectPage(item.PageTypeName);
-        }
-
-        private void SelectPage(string pageName)
-        {
-            if (IsLoaded)
-            {
-                Frame1.Content = string.IsNullOrEmpty(pageName) || Pages.Count == 0
-                    ? PageNotFounded
-                    : (object)Pages[pageName];
-            }
-        }
-
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -79,24 +99,8 @@ namespace UniversalWindowsStart.Controls
             HamburgerMenuButton.Click += HamburgerMenuButton_Click;
             SplitView1 = GetTemplateChild<SplitView>(PART_SplitView, true);
             Frame1 = GetTemplateChild<Frame>(PART_Frame, true);
+            FooterArea = GetTemplateChild<FrameworkElement>(PART_FooterArea, true);
         }
-
-        private void HamburgerMenuButton_Click(object sender, RoutedEventArgs e)
-        {
-            SplitView1.IsPaneOpen = !SplitView1.IsPaneOpen;
-        }
-
-        public Dictionary<string, Page> Pages
-        {
-            get => (Dictionary<string, Page>)GetValue(PagesProperty);
-            set => SetValue(PagesProperty, value);
-        }
-        public static readonly DependencyProperty PagesProperty =
-            DependencyProperty.Register(
-                name: nameof(Pages),
-                propertyType: typeof(Dictionary<string, Page>),
-                ownerType: typeof(SideMenu),
-                typeMetadata: new PropertyMetadata(new Dictionary<string, Page>()));
 
         /// <summary>
         /// Retrieves the named element in the instantiated ControlTemplate visual tree.
@@ -109,7 +113,6 @@ namespace UniversalWindowsStart.Controls
             T child = GetTemplateChild(childName) as T;
             return (child == null) && isRequired ? throw new ArgumentNullException(childName) : child;
         }
-
 
         protected override DependencyObject GetContainerForItemOverride()
         {
